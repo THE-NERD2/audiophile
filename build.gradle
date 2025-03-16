@@ -1,2 +1,11 @@
 group = 'org.audiophile'
 version = '0.1.0-alpha'
+
+tasks.register("createZip", Zip) {
+    archiveFileName = "audiophile-${version}.zip"
+    destinationDirectory = file("$projectDir/build/dist")
+
+    from("$projectDir/audiophile-math/audiophile_math")
+    from("$projectDir/audiophile-core/build/libs/audiophile-core-${version}-all.jar")
+}
+createZip.dependsOn(":audiophile-core:shadowJar")

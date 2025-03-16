@@ -1,0 +1,27 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.1.10'
+    id "scala"
+    id "com.github.johnrengelman.shadow" version "8.1.1"
+}
+
+group = 'org.audiophile'
+version = '0.1.0-alpha'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation("dev.scalapy:scalapy-core_3:0.5.3")
+    implementation("org.scala-lang:scala3-library_3:3.6.4")
+    implementation("com.formdev:flatlaf:3.4.1")
+    implementation("com.miglayout:miglayout-swing:11.3")
+}
+
+test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(21)
+}
