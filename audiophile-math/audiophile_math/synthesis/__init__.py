@@ -2,15 +2,20 @@ import open3d as o3d
 import numpy as np
 
 class VibratingPointCloud:
-    def __init__(self):
+    def __init__(self, neighbor_distance = 0.2):
         self.points = []
+        self.neighbor_distance = neighbor_distance
     def add_point(self, point):
         self.points.append(point)
     def finish(self):
-        pass # TODO: Link points together
+        for point in self.points:
+            for other_point in self.points:
+                if point != other_point:
+                    if np.linalg.norm(point.location - other_point.location) < self.neighbor_distance:
+                        point.connect_to(other_point)
 class VibratingPoint:
-    def __init__(self, point, material = None):
-        self.point = point
+    def __init__(self, location, material = None):
+        self.location = location
         self.current_magnitude = 0
         self.material = material
         self.neighbors = []
