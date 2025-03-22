@@ -17,6 +17,7 @@ dependencies {
     implementation("org.scala-lang:scala3-library_3:3.6.4")
     implementation("com.formdev:flatlaf:3.4.1")
     implementation("com.miglayout:miglayout-swing:11.3")
+    implementation "org.jetbrains.kotlin:kotlin-reflect:2.1.10"
 }
 
 test {

@@ -1,6 +1,8 @@
 package org.audiophile.ui
 
 import net.miginfocom.swing.MigLayout
+import org.audiophile.audiolibraries.AudioLibrary
+import org.audiophile.audiolibraries.AudioLibraryType
 import javax.swing.ButtonGroup
 import javax.swing.JButton
 import javax.swing.JDialog
@@ -17,6 +19,7 @@ internal object UI: JTabbedPane() {
     private val mainPanel = object: JPanel(MigLayout()) {}
     private val synthPanel = object: JPanel(MigLayout()) {
         private val newAudioLibrary = JButton("New Audio Library")
+        private var currentAudioLibrary: AudioLibrary? = null
         init {
             newAudioLibrary.addActionListener { audioLibraryDialog() }
             add(newAudioLibrary)
@@ -47,6 +50,8 @@ internal object UI: JTabbedPane() {
             val okButton = JButton("OK")
             dialog.add(okButton, "cell 2 6, align right")
             okButton.addActionListener {
+                val typeIndex = audioLibraryOptions.indexOfFirst { it.isSelected }
+                currentAudioLibrary = AudioLibrary.new(nameField.text, AudioLibraryType.entries[typeIndex])
                 dialog.dispose()
             }
 
