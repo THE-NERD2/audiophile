@@ -33,22 +33,16 @@ internal object UI: JTabbedPane() {
             dialog.add(JLabel("Type:"), "cell 0 1")
 
             val typeGroup = ButtonGroup()
-
-            val standardSynth = JRadioButton("Standard Synth")
-            typeGroup.add(standardSynth)
-            dialog.add(standardSynth, "cell 0 2, spanx")
-
-            val physicalSimulation = JRadioButton("Physical Simulation")
-            typeGroup.add(physicalSimulation)
-            dialog.add(physicalSimulation, "cell 0 3, spanx")
-
-            val audioShader = JRadioButton("Audio Shader")
-            typeGroup.add(audioShader)
-            dialog.add(audioShader, "cell 0 4, spanx")
-
-            val analyzeAudio = JRadioButton("Analyze Existing Audio")
-            typeGroup.add(analyzeAudio)
-            dialog.add(analyzeAudio, "cell 0 5, spanx")
+            val audioLibraryOptions = listOf(
+                JRadioButton("Standard Synth"),
+                JRadioButton("Physical Simulation"),
+                JRadioButton("Audio Shader"),
+                JRadioButton("Analyze Existing Audio")
+            )
+            audioLibraryOptions.forEachIndexed { i, option ->
+                typeGroup.add(option)
+                dialog.add(option, "cell 0 ${i + 2}, spanx")
+            }
 
             val okButton = JButton("OK")
             dialog.add(okButton, "cell 2 6, align right")
