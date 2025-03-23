@@ -42,13 +42,15 @@ internal object UI: JTabbedPane() {
                 JRadioButton("Audio Shader"),
                 JRadioButton("Analyze Existing Audio")
             )
+            var maxRowIndex = 0
             audioLibraryOptions.forEachIndexed { i, option ->
                 typeGroup.add(option)
                 dialog.add(option, "cell 0 ${i + 2}, spanx")
+                maxRowIndex = i + 2
             }
 
             val okButton = JButton("OK")
-            dialog.add(okButton, "cell 2 6, align right")
+            dialog.add(okButton, "cell 2 ${++maxRowIndex}, align right")
             okButton.addActionListener {
                 val typeIndex = audioLibraryOptions.indexOfFirst { it.isSelected }
                 currentAudioLibrary = AudioLibrary.new(nameField.text, AudioLibraryType.entries[typeIndex])
