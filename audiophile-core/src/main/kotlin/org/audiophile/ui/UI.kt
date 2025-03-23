@@ -49,10 +49,18 @@ internal object UI: JTabbedPane() {
                 maxRowIndex = i + 2
             }
 
+            val errorLabel = JLabel()
+            dialog.add(errorLabel, "cell 0 ${++maxRowIndex}, spanx")
+
             val okButton = JButton("OK")
             dialog.add(okButton, "cell 2 ${++maxRowIndex}, align right")
             okButton.addActionListener {
                 val typeIndex = audioLibraryOptions.indexOfFirst { it.isSelected }
+                if (typeIndex == -1) {
+                    errorLabel.text = "Please select a type"
+                    dialog.pack()
+                    return@addActionListener
+                }
                 currentAudioLibrary = AudioLibrary.new(nameField.text, AudioLibraryType.entries[typeIndex])
                 dialog.dispose()
             }
