@@ -1,12 +1,12 @@
 package org.audiophile
 
-import com.formdev.flatlaf.FlatLightLaf
+import com.formdev.flatlaf.FlatDarkLaf
 import org.audiophile.ui.UI
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
 
 fun main() {
-    FlatLightLaf.setup()
+    FlatDarkLaf.setup()
     SwingUtilities.invokeLater {
         UI.frame = JFrame("Audiophile")
 
